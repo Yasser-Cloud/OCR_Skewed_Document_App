@@ -1,0 +1,90 @@
+
+
+<style media="screen">
+
+  body {
+    background: linear-gradient(45deg, #FC466B, #3F5EFB);
+    height: 100vh;
+    font-family: 'Montserrat', sans-serif;
+  }
+
+
+  .container2 {
+    position: absolute;
+    transform: translate(-50%,-50%);
+    top: 12%;
+    left: 45%;
+    width: 200px;
+    color: #fff;
+
+  }
+
+  .left{
+    position: absolute;
+    transform: translate(-100%,-50%);
+    top: 50%;
+    left: 30%;
+    width: 400px;
+    color: #fff;
+  }
+
+  .right{
+    position: absolute;
+    transform: translate(70%,-50%);
+    top: 50%;
+    right: 29.8%;
+    width: 150px;
+
+    color: #fff;
+  }
+
+  textarea {
+    resize: none;
+  }
+
+  h2 {
+    font-weight: 500;
+    color: #fff;
+    opacity: 0.7;
+    font-size: 1.9rem;
+    margin-top: 0;
+    margin-bottom: 60px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+  }
+  p {
+    font-weight: 500;
+    color: #fff;
+    opacity: 0.7;
+    font-size: 1.4rem;
+    margin-top: 0;
+    margin-bottom: 60px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+  }
+
+
+  a,
+  select:focus,
+  textarea:focus,
+
+</style>
+
+<title>Result</title>
+
+<div class="container2">
+
+      {% csrf_token %}
+    <h2>Congratulations!!</h2>
+</div>
+
+
+<div class="left">
+  <img src="static/After_Rotation.png" alt="OCR for text image" width="400" height="500">
+
+</div>
+
+<div class= "right" >
+  <h4>Words extracted</h4>
+  <textarea name="Text" rows="22" cols="60">
+    {{res}}
+  </textarea>
+</div>
