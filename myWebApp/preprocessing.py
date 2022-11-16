@@ -1,14 +1,16 @@
 from skimage.transform import hough_line, hough_line_peaks, rotate
 from skimage.feature import canny
 from skimage.io import imread, imsave
-from skimage.color import rgb2gray
+from skimage.color import rgb2gray, gray2rgb
+from skimage.draw import rectangle_perimeter
 from scipy.stats import mode
 import numpy as np
 from PIL import Image
-import cv2
 import pytesseract
 from pytesseract import image_to_string
 from pytesseract import Output
+import matplotlib.pyplot as plt
+
 
 def imageCorrection(fixed_angle, image):
     fixed_image = rotate(image, fixed_angle)
@@ -38,8 +40,8 @@ def Hough_Transform(image_path):
 
 
 def OCR():
-    img = cv2.imread(r'fixed_image.png')
-
+    img = imread(r'fixed_image.png')
+    img = gray2rgb(img)
     h, w, c = img.shape
 
 
@@ -52,11 +54,18 @@ def OCR():
     for i in range(n_boxes):
         if int(d['conf'][i]) > 60:
             (x, y, w, h) = (d['left'][i], d['top'][i], d['width'][i], d['height'][i])
-            img = cv2.rectangle(img, (x, y), (x + w, y + h), (0, 255, 0), 2)
+            rr,cc = rectangle_perimeter(start =(x, y), extent = ( w,  h),shape=img.shape)
+            # make rectangles more blod
+            # swap w with h
+            cc,rr=rr,cc
+            img[ rr,cc, :] = [0, 255, 0] ## green Color
+            img[ rr-1,cc-1, :] = [0, 255, 0] ## green Color
+
             res.append(d['text'][i])
     #print('Words with more than 60% confident: ')
     #print(res)
 
-    disp_img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
-    cv2.imwrite('static/After_Rotation.png',disp_img)
+
+
+    imsave('static/After_Rotation.png',img)
     return res
