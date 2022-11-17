@@ -42,5 +42,5 @@ Bezmaternykh, P. V., and Dmitry P. Nikolaev. "A document skew detection method u
 - [Skew Detection and Correction using Hough Transform](https://muthu.co/skew-detection-and-correction-of-document-images-using-hough-transform/).
  Muthukrishnan,Computer Vision,August 22, 2020.
 - [Skew correction in Documents using Deep learning](https://medium.com/mlearning-ai/skew-correction-in-documents-using-deep-learning-8e19609107b6).
-  Vishnu Nandakumar
+  Vishnu Nandakumar.
 
